@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      book: "本"
+    attributes:
+      book:
+        title: "タイトル"
+        memo: "メモ"
