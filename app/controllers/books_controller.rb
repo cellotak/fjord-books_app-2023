@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @books = Book.all
-    flash[:noice] = "Hello Flash" #追加
+    flash[:noice] = t(:hello_flash) #追加
   end
 
   # GET /books/1 or /books/1.json

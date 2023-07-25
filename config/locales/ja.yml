@@ -1,4 +1,5 @@
 ja:
+  hello_flash: "Hello CelloTAK"
   activerecord:
     models:
       book: "本"
