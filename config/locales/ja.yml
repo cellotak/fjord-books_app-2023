@@ -1,9 +1,14 @@
 ja:
-  hello_flash: "Hello CelloTAK"
-  activerecord:
-    models:
-      book: "本"
-    attributes:
-      book:
-        title: "タイトル"
-        memo: "メモ"
+  books : "本一覧"
+  title : "タイトル"
+  memo: "メモ"
+  author : "著者"
+  picture: "画像"
+  new_book: "新しい本の追加"
+  show_this_book: "閲覧する"
+  edit_this_book: "編集する"
+  back_to_books : "本一覧に戻る"
+  destroy_this_book: "削除する"
+  success_create_message: '本の情報が正常に作成されました'
+  success_update_message: '本の情報が正常に更新されました'
+  success_destroy_message: '本の情報が正しく削除されました'
