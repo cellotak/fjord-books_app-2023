@@ -44,5 +44,5 @@ en:
   success_update_message: 'Book was successfully updated.'
   success_destroy_message): 'Book was successfully destroyed.'
   editing_book: "Editing book"
-    create_book_submit: "Create Book"
+  create_book_submit: "Create Book"
   edit_book_submit: "Edit Book"
