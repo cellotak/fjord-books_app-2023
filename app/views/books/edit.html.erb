@@ -1,4 +1,4 @@
-<h1>Editing book</h1>
+<h1><%= t(:editing_book) %></h1>
 
 <%= render "form", book: @book %>
 
@@ -6,5 +6,5 @@
 
 <div>
   <%= link_to t(:show_this_book), @book %> |
-  <%= link_to "Back to books", books_path %>
+  <%= link_to t(:back_to_books), books_path %>
 </div>

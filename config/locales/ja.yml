@@ -12,3 +12,6 @@ ja:
   success_create_message: '本の情報が正常に作成されました'
   success_update_message: '本の情報が正常に更新されました'
   success_destroy_message: '本の情報が正しく削除されました'
+  editing_book: "本の情報を編集"
+  create_book_submit: "新規作成"
+  edit_book_submit: "更新"
