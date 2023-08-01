@@ -46,3 +46,4 @@ en:
   editing_book: "Editing book"
   create_book_submit: "Create Book"
   edit_book_submit: "Edit Book"
+  prohibit_save: "prohibited this book from being saved:"

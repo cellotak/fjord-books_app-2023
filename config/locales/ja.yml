@@ -15,3 +15,5 @@ ja:
   editing_book: "本の情報を編集"
   create_book_submit: "新規作成"
   edit_book_submit: "更新"
+  prohibit_save: "この本の保存は許可されていません"
+  
