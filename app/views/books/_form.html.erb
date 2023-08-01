@@ -33,9 +33,9 @@
 
   <div>
     <% if request.path_info == new_book_path %>
-      <%= form.submit t(:create_book_submit)%> 
+      <%= form.submit t(:create_book_submit)  %>
     <% elsif request.path_info == edit_book_path %>
-      <%= form.submit t(:edit_book_submit)%>
+      <%= form.submit t(:edit_book_submit) %>
     <% end %>
   </div>
 <% end %>
