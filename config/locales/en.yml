@@ -1,49 +1,28 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  books: "Books"
-  title: "Title"
-  memo: "Memo"
-  author: "Author"
-  picture: "Picture"
-  new_book: "New book"
-  show_this_book: "Show this book"
-  edit_this_book: "Edit this book"
-  back_to_books : "Back to books"
-  destroy_this_book: "Destroy this book"
-  success_create_message: 'Book was successfully created.'
-  success_update_message: 'Book was successfully updated.'
-  success_destroy_message): 'Book was successfully destroyed.'
-  editing_book: "Editing book"
-  create_book_submit: "Create Book"
-  edit_book_submit: "Edit Book"
-  prohibit_save: "prohibited this book from being saved:"
+  activerecord:
+    models:
+      book: Book
+    attributes:
+      book:
+        title: "Title"
+        memo: "Memo"
+        author : "Author"
+        picture: "Picture"
+  views:
+    new: "New %{name}"
+    show: "Show this %{name}"
+    edit: "Edit this %{name}"
+    back: "Back to %{headline}"
+    destroy: "Destroy"
+    headline: 
+      index: "%{name} lists"
+      new: "New %{name}"
+      edit: "Editing %{name}"
+  helpers:
+    submit: 
+      create: "Create %{model}"
+      update: "Update %{model}"
+  controllers:
+    success_create: '%{name} was successfully created.'
+    success_update: '%{name} was successfully updated.'
+    success_destroy: '%{name} was successfully destroyed.'
