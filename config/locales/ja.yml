@@ -12,14 +12,14 @@ ja:
     new: "新しい%{name}の追加"
     show: "閲覧する"
     edit: "編集する"
-    back: "%{headline}に戻る"
+    back: "%{index}に戻る"
     destroy: "削除する"
     headline: 
       index: "%{name}一覧"
       new: "新しい%{name}の追加"
       edit: "%{name}の情報を編集" 
   helpers:
-    submit: 
+    submit:
       create: "新規作成"
       update: "更新"
   controllers:

@@ -12,14 +12,14 @@ en:
     new: "New %{name}"
     show: "Show this %{name}"
     edit: "Edit this %{name}"
-    back: "Back to %{headline}"
+    back: "Back to %{index}"
     destroy: "Destroy"
     headline: 
       index: "%{name} lists"
       new: "New %{name}"
       edit: "Editing %{name}"
   helpers:
-    submit: 
+    submit:
       create: "Create %{model}"
       update: "Update %{model}"
   controllers:
