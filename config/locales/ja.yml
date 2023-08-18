@@ -1,5 +1,10 @@
 ---
 ja:
+  devise:
+    registrations:
+      user:
+        signed_up: "新規登録に成功しました"
+        signed_in: "ログインに成功しました"
   activerecord:
     errors:
       messages:
