@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/index'
+  # get 'users/show'
   devise_for :users
   resources :books
+  resources :users
   root 'users#index'
-
-
-  devise_scope :user do
-    get "users/index", to: 'users/registrations#index'
-  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
