@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    :registrations => 'users/registrations'
-  }
+  devise_for :users
   resources :books
   root 'users#index'
 
