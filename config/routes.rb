@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations'
   }
   resources :books
-  root 'books#index'
+  root 'users#index'
 
 
   devise_scope :user do

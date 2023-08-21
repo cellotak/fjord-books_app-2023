@@ -1,0 +1,9 @@
+<div id="users" class="index-items">
+  <% @users.each do |user| %>
+    <div class="index-item">
+      <p>
+        <%= user.email %>
+      </p>    
+    </div>
+  <% end %>
+</div>
