@@ -10,3 +10,17 @@
     </div>
   <% end %>
 </div>
+
+
+<% @users.each do |user| %>
+  <table class="table">
+    <tr>
+    <th>名前</th>
+    <th>作成日時</th>
+  </tr>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= user.created_at %></td>
+  </tr>
+  </table>
+<% end %>
