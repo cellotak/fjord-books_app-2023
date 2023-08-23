@@ -1,6 +1,12 @@
 <div id="<%= dom_id user %>">
   <table>
     <tr>
+      <th>ユーザー名</th>
+      <th>メールアドレス</th>
+      <th>作成日時</th>
+    </tr> 
+    <tr>
+      <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.created_at %></td>
     </tr>

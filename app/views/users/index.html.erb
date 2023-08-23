@@ -1,12 +1,6 @@
 <h1>ユーザー一覧</h1>
 
-<table>
-  <tr>
-    <th>名前</th>
-    <th>作成日時</th>
-  </tr>
-</table>
-
 <% @users.each do |user| %>
   <%= render user %>
+  <%= link_to t('views.common.show', name: User.model_name.human.downcase), user %>
 <% end %>
