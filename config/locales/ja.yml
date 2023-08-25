@@ -184,6 +184,7 @@ ja:
   views:
     common:
       logged_in_as: "ログイン中のアカウント :"
+      index: "%{name}の一覧"
       show: "この%{name}を表示"
       edit: "この%{name}を編集"
       destroy: "この%{name}を削除"

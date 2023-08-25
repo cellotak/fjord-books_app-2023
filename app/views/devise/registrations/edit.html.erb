@@ -1,4 +1,4 @@
-<h2><%= t('.title', resource: resource_name.to_s.humanize) %></h2>
+<h2><%= t('views.common.title_edit', name: User.model_name.human.downcase) %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -58,6 +58,8 @@
 
 <h3><%= t('.cancel_my_account') %></h3>
 
-<div><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure'), turbo_confirm: t('.are_you_sure') }, method: :delete %></div>
+<div><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure'), turbo_confirm: t('.are_you_sure') }, method: :delete %></div>
+
+<div><br /></div>
 
 <%= link_to t('devise.shared.links.back'), :back %>
