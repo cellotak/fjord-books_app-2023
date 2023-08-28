@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    models:
+      book: 本
+    attributes:
+      book:
+        title: "タイトル"
+        memo: "メモ"
+        author : "著者"
+        picture: "画像"
+  views:
+    new: "新しい%{name}の追加"
+    show: "閲覧する"
+    edit: "編集する"
+    back: "%{index}に戻る"
+    destroy: "削除する"
+    headline: 
+      index: "%{name}一覧"
+      new: "新しい%{name}の追加"
+      edit: "%{name}の情報を編集" 
+  helpers:
+    submit:
+      create: "新規作成"
+      update: "更新"
+  controllers:
+    success_create: '%{name}の情報が正常に作成されました'
+    success_update: '%{name}の情報が正常に更新されました'
+    success_destroy: '%{name}の情報が正しく削除されました'
