@@ -11,7 +11,7 @@ class User < ApplicationRecord
   def validate_file_type
     return unless avatar.attached?
 
-    errors.add(:avatar, I18n.t('errors.messages.file_type_not_image')) unless image
+    errors.add(:avatar, I18n.t('errors.messages.file_type_not_image')) unless image?
   end
 
   def image?
