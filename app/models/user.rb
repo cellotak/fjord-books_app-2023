@@ -3,12 +3,12 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validate :validate_file_type
+  validate :validate_avatar_file_type
   has_one_attached :avatar
 
   private
 
-  def validate_file_type
+  def validate_avatar_file_type
     return unless avatar.attached?
 
     errors.add(:avatar, I18n.t('errors.messages.file_type_not_image')) unless image?
