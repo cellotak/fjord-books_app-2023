@@ -11,10 +11,10 @@ class User < ApplicationRecord
   def validate_avatar_file_type
     return unless avatar.attached?
 
-    errors.add(:avatar, I18n.t('errors.messages.file_type_not_image')) unless avatar_have_image?
+    errors.add(:avatar, I18n.t('errors.messages.file_type_not_image')) unless avatar_is_image?
   end
 
-  def avatar_have_image?
+  def avatar_is_image?
     %w[image/jpg image/jpeg image/gif image/png].include?(avatar.blob.content_type)
   end
 end
