@@ -21,9 +21,7 @@ class ReportsController < ApplicationController
 
   # POST /reports or /reports.json
   def create
-    hoge = report_params
-    hoge["user_id"] = current_user.id
-    @report = Report.new(hoge)
+    @report = current_user.reports.build(report_params)
     respond_to do |format|
       if @report.save
         format.html { redirect_to report_url(@report), notice: "Report was successfully created." }
