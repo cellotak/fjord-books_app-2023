@@ -10,7 +10,7 @@
   <% end %>
   <%= link_to t('views.common.back', name: i18n_pluralize(Report.model_name.human.downcase)), reports_path %>
   <% if current_user == @report.user %>
-    <%= button_to t('views.common.destroy', name: Book.model_name.human.downcase), @book, method: :delete %>
+    <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
   <% end %>
 </nav>
 

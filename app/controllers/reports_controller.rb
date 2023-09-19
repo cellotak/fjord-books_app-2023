@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[ show edit update destroy ]
-
+  before_action :is_current_user_report?, only: %i[ edit update destroy ]
   # GET /reports or /reports.json
   def index
     @reports = Report.order(:id).page(params[:page])
@@ -66,4 +66,11 @@ class ReportsController < ApplicationController
     def report_params
       params.require(:report).permit(:user_id, :title, :content)
     end
+
+    def is_current_user_report?
+      if current_user != @report.user
+        redirect_to reports_path
+      end
+    end
+
 end
