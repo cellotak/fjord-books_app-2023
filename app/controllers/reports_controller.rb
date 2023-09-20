@@ -54,7 +54,7 @@ class ReportsController < ApplicationController
 
   def ensure_current_user
     if current_user != @report.user
-      redirect_to reports_path, alert: t('controllers.common.alert_unauthorized operation')
+      redirect_to reports_path, alert: t('controllers.common.alert_unauthorized_operation')
     end
   end
 
