@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[ show edit update destroy ]
-  before_action :is_current_user_report?, only: %i[ edit update destroy ]
+  before_action :set_report, only: %i[show edit update destroy]
+  before_action :current_user_report?, only: %i[edit update destroy]
   # GET /reports or /reports.json
   def index
     @reports = Report.order(:id).page(params[:page])
   end
 
   # GET /reports/1 or /reports/1.json
-  def show
-  end
+  def show; end
 
   # GET /reports/new
   def new
@@ -16,8 +17,7 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /reports or /reports.json
   def create
@@ -57,20 +57,21 @@ class ReportsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_report
-      @report = Report.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def report_params
-      params.require(:report).permit(:user_id, :title, :content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_report
+    @report = Report.find(params[:id])
+  end
 
-    def is_current_user_report?
-      if current_user != @report.user
-        redirect_to reports_path
-      end
+  # Only allow a list of trusted parameters through.
+  def report_params
+    params.require(:report).permit(:title, :content)
+  end
+
+  def current_user_report?
+    if current_user != @report.user
+      redirect_to reports_path, alert: t('controllers.common.alert_unauthorized operation')
     end
+  end
 
 end
