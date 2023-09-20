@@ -27,7 +27,6 @@ class ReportsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   # PATCH/PUT /reports/1 or /reports/1.json
@@ -42,7 +41,7 @@ class ReportsController < ApplicationController
   # DELETE /reports/1 or /reports/1.json
   def destroy
     @report.destroy
-    redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human) 
+    redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
   end
 
   private
@@ -53,9 +52,7 @@ class ReportsController < ApplicationController
   end
 
   def ensure_current_user
-    if current_user != @report.user
-      redirect_to reports_path, alert: t('controllers.common.alert_unauthorized_operation')
-    end
+    redirect_to reports_path, alert: t('controllers.common.alert_unauthorized_operation') if current_user != @report.user
   end
 
   # Only allow a list of trusted parameters through.
