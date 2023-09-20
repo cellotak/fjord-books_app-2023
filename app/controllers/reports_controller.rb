@@ -2,7 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
-  before_action :current_user_report?, only: %i[edit update destroy]
+  before_action :ensure_current_user, only: %i[edit update destroy]
   # GET /reports or /reports.json
   def index
     @reports = Report.order(created_at: :desc).page(params[:page])
@@ -52,15 +52,14 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
-  def report_params
-    params.require(:report).permit(:title, :content)
-  end
-
-  def current_user_report?
+  def ensure_current_user
     if current_user != @report.user
       redirect_to reports_path, alert: t('controllers.common.alert_unauthorized operation')
     end
   end
 
+  # Only allow a list of trusted parameters through.
+  def report_params
+    params.require(:report).permit(:title, :content)
+  end
 end
