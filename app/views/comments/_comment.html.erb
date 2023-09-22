@@ -6,7 +6,13 @@
 
   <p>
     <strong><%= User.human_attribute_name(:name) %>:</strong>
-    <%= comment.user.name %>
+    <strong><%= "投稿者" %>:</strong>
+    <% if comment.user.name.blank? %>
+      <%= comment.user.email %>
+    <% else%>
+      <%= comment.user.name %>  
+    <% end %>
+
   </p>
 
   <p>
