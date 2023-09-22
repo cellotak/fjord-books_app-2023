@@ -10,6 +10,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
+    @comment = @report.comments.new
     @comments = @report.comments.order(created_at: :desc).page(params[:page])
   end
 

@@ -4,13 +4,14 @@
   <%= render @report %>
 </div>
 
+<%= render "comment_form", comment: @comment %>
+
 <div id="comments" class="index-items">
   <% @comments.each do |comment| %>
     <div class="index-item">
       <%= render comment %>
       <p>
-        <%= p report_comment_path(comment, report_id: comment.commentable_id) %>
-        <%= link_to "詳細", report_comment_path(comment.commentable, comment) %>
+        <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), report_comment_path(comment.commentable, comment) %>
       </p>
     </div>
   <% end %>

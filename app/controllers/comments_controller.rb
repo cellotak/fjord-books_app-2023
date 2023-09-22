@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_commentable, only: %i[create show] 
-  
+
   def create
     @comment = @commentable.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to [@commentable, @comment], notice: 'Comment was successfully created.'
+      redirect_to @commentable, notice: 'Comment was successfully created.'
     else
       render :new
     end
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:report).permit(:content)
+    params.require(:comment).permit(:content)
   end
 
   def set_commentable
