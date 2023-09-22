@@ -1,9 +1,14 @@
 <div id="<%= dom_id comment %>">
   <p>
-    <strong><%= Comment.human_attribute_name(:name) %>:</strong>
+    <strong><%= User.human_attribute_name(:user_id) %>:</strong>
     <%= comment.user_id %>
   </p>
 
+  <p>
+    <strong><%= User.human_attribute_name(:name) %>:</strong>
+    <%= comment.user.name %>
+  </p>
+  
   <p>
     <strong><%= Report.human_attribute_name(:content) %></strong>
     <br>

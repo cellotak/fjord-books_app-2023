@@ -9,8 +9,8 @@
     <div class="index-item">
       <%= render comment %>
       <p>
-        <%= p report_comment_path(comment) %>
-        <%= link_to "詳細", report_comment_path(comment) %>
+        <%= p report_comment_path(comment, report_id: comment.commentable_id) %>
+        <%= link_to "詳細", report_comment_path(comment.commentable, comment) %>
       </p>
     </div>
   <% end %>
