@@ -3,3 +3,8 @@
 <div class="show-item">
   <%= render @comment %>
 </div>
+
+<nav class="page-nav">
+<%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), report_comment_path(@comment.commentable, @comment), method: :delete %>
+</nav>
+

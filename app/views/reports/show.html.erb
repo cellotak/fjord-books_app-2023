@@ -13,6 +13,10 @@
       <p>
         <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), report_comment_path(comment.commentable, comment) %>
       </p>
+      <br>
+      <div align="right">
+      <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), report_comment_path(comment.commentable, comment), method: :delete %>
+      </div>
     </div>
   <% end %>
 </div>
