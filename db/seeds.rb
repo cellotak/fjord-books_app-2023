@@ -79,8 +79,8 @@ end
 User.order(:id).each do |user|
   10.times do |n|
     user.reports.create!(
-      title: "#{user.name}の#{n+1}日目の日報",
-      content: "#{user.name}の#{n+1}日目の日報のダミー文章です。"
+      title: "#{user.name}の#{n + 1}日目の日報",
+      content: "#{user.name}の#{n + 1}日目の日報のダミー文章です。"
     )
   end
 end

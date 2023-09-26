@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :show]
   end
   resources :reports do
-    resources :comments,only: [:create, :show, :destroy]
+    resources :comments, only: [:create, :show, :destroy], module: :reports
   end
   resources :users, only: %i(index show)
 end

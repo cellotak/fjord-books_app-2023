@@ -1,7 +1,9 @@
-# class Report::CommentsController < CommentsController
-#   before_action :set_commentable, only: %i[create]
-#   private
-#     def set_commentable
-#       @commentable = Report.find(params[:report_id])
-#     end
-# end
+# frozen_string_literal: true
+
+class Reports::CommentsController < CommentsController
+  private
+
+  def set_commentable
+    @commentable = Report.find(params[:report_id])
+  end
+end
