@@ -24,3 +24,4 @@ ja:
         created_at: 投稿日時
       comment:
         created_at: 投稿日時
+        content: コメント

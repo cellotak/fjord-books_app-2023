@@ -13,11 +13,11 @@
 
   <div>
     <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, required: true %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit t('views.common.post', name: Comment.model_name.human.downcase)%>
   </div>
 
 <% end %>
