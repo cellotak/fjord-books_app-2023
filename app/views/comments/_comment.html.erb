@@ -8,8 +8,8 @@
     <strong><%= Comment.human_attribute_name(:user_name) %>:</strong>
     <% if comment.user.name.blank? %>
       <%= comment.user.email %>
-    <% else%>
-      <%= comment.user.name %>  
+    <% else %>
+      <%= comment.user.name %>
     <% end %>
 
   </p>
