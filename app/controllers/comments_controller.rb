@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
+  before_action :set_commentable, only: %i[create show destroy]
   before_action :set_comment, only: %i[show destroy]
   before_action :ensure_current_user, only: %i[destroy]
-  before_action :set_commentable, only: %i[create show destroy]
-
+  
   def show; end
 
   def create
@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @commentable.comments.find(params[:id])
     @comment.destroy
     redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
   end

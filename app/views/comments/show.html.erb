@@ -1,10 +1,9 @@
 <h1><%= t('views.common.title_show', name: Comment.model_name.human) %></h1>
 
 <div class="show-item">
-  <%= render @comment %>
+  <%= render "comment", comment: @comment %>
 </div>
 
 <nav class="page-nav">
 <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), report_comment_path(@comment.commentable, @comment), method: :delete %>
 </nav>
-
