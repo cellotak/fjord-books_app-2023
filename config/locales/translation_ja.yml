@@ -25,3 +25,4 @@ ja:
       comment:
         created_at: 投稿日時
         content: コメント
+        user_name: 投稿者
