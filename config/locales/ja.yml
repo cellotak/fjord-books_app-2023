@@ -192,11 +192,13 @@ ja:
       title_index: "%{name}の一覧"
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      title_post: "%{name}の投稿"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       title_show: "%{name}の詳細"
       sign_out: ログアウト
       post: "%{name}を投稿"
+      no_item: "%{name}はありません"
     pagination:
       first: '« 最初'
       last: '最後 »'

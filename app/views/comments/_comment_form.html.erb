@@ -1,4 +1,4 @@
-<h2><%= "コメント投稿欄" %></h2>
+<h2><%= t('views.common.title_post', name: Comment.model_name.human) %></h2>
 
 <%= form_with(model:[comment.commentable, comment]) do |form| %>
   <% if comment.errors.any? %>
