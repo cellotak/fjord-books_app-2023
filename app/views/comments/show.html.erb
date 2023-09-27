@@ -7,10 +7,6 @@
 <nav class="page-nav">
 
 <% if current_user == @comment.user %>
-  <% if @comment.commentable_type == "Report" %>
-    <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), report_comment_path(@comment.commentable, @comment), method: :delete %>
-  <% elsif @comment.commentable_type == "Book"%>
-    <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), book_comment_path(@comment.commentable, @comment), method: :delete %>
-  <% end %>
+    <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), commentable_comment_path(@comment), method: :delete %>
 <% end %>
 </nav>
