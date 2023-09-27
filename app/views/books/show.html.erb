@@ -4,24 +4,12 @@
   <%= render @book %>
 </div>
 
+<h2><%= "コメント投稿欄" %></h2>
 <%= render 'comments/comment_form', comment: @comment %>
 
-<div id="comments" class="index-items">
-  <% @comments.each do |comment| %>
-    <div class="index-item">
-      <%= render comment %>
-      <p>
-        <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), book_comment_path(comment.commentable, comment) %>
-      </p>
-      <% if current_user == comment.user %>
-        <br>
-        <div align="right">
-        <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), book_comment_path(comment.commentable, comment), method: :delete %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+
+<%= render 'comments/comment_index',comments: @comments%>
+<h2><%= t('views.common.title_index', name: Comment.model_name.human) %></h2>
 
 <%= paginate @comments %>
 
