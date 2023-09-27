@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module CommentsHelper
   def commentable_comment_path(comment)
-    if @comment.commentable_type == "Report"
+    case comment.commentable_type
+    when 'Report'
       report_comment_path(comment.commentable, comment)
-    elsif @comment.commentable_type == "Book"
+    when 'Book'
       book_comment_path(comment.commentable, comment)
     end
   end
