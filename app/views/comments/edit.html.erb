@@ -3,5 +3,5 @@
 <%= render 'comments/form', comment: @comment %>
 <br>
 <nav class="page-nav">
-  <%= link_to t('views.common.back_to_show', name: Comment.model_name.human.downcase), commentable_comment_path(@comment) %>
+  <%= link_to t('views.common.back_to_show', name: Comment.model_name.human.downcase), polymorphic_path([@comment.commentable, @comment]) %>
 </nav>

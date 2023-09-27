@@ -7,12 +7,12 @@
     <div class="index-item">
       <%= render comment %>
       <p>
-        <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), commentable_comment_path(comment) %>
+        <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), polymorphic_path([comment.commentable, comment]) %>
       </p>
       <% if current_user == comment.user %>
         <br>
         <div align="right">
-        <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), commentable_comment_path(comment), method: :delete %>
+        <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), polymorphic_path([comment.commentable, comment]), method: :delete %>
         </div>
       <% end %>
 
