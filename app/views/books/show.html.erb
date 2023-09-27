@@ -4,9 +4,9 @@
   <%= render @book %>
 </div>
 
-<%= render 'comments/comment_form', comment: @comment %>
+<%= render 'comments/form', comment: @comment %>
 
-<%= render 'comments/comment_index', comments: @comments %>
+<%= render 'comments/index', comments: @comments %>
 
 <nav class="page-nav">
   <%= link_to t('views.common.edit', name: Book.model_name.human.downcase), edit_book_path(@book) %> |
