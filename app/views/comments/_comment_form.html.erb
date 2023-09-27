@@ -1,3 +1,5 @@
+<h2><%= "コメント投稿欄" %></h2>
+
 <%= form_with(model:[comment.commentable, comment]) do |form| %>
   <% if comment.errors.any? %>
     <div style="color: red">
