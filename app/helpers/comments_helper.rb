@@ -26,6 +26,5 @@ module CommentsHelper
     when 'Book'
       Book.model_name.human.downcase
     end
-    
   end
 end
