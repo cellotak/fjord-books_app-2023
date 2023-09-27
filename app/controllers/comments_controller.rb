@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_commentable, only: %i[create show destroy]
-  before_action :set_comment, only: %i[show destroy]
-  before_action :ensure_current_user, only: %i[destroy]
+  before_action :set_commentable, only: %i[create show destroy edit update]
+  before_action :set_comment, only: %i[show destroy edit update]
+  before_action :ensure_current_user, only: %i[destroy edit update]
 
   def show; end
+
+  def edit; end
 
   def create
     @comment = @commentable.comments.build(comment_params)
@@ -14,6 +16,14 @@ class CommentsController < ApplicationController
       redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
     else
       redirect_to @commentable, alert: t('controllers.comment.no_content')
+    end
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to @commentable, notice: t('controllers.common.notice_update', name: Comment.model_name.human)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -7,6 +7,10 @@
 <nav class="page-nav">
 
 <% if current_user == @comment.user %>
-    <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), commentable_comment_path(@comment), method: :delete %>
+  <nav class="page-nav">
+    <%= link_to t('views.common.edit', name: Comment.model_name.human.downcase), edit_commentable_comment_path(@comment) %> |
+    <%= link_to t('views.common.back_to_show', name: commentable_model_name(@comment)), @comment.commentable %>
+  </nav>
+  <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), commentable_comment_path(@comment), method: :delete %>
 <% end %>
 </nav>
