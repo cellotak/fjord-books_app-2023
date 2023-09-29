@@ -22,6 +22,13 @@ class ReportsController < ApplicationController
     @report = current_user.reports.new(report_params)
 
     if @report.save
+
+      if @report.content.include?("http://127.0.0.1:3000/reports/10")
+        @mention = MentionRelation.new(mentioning_report_id: @report.id, mentioned_report_id:10)
+        @mention.save
+        
+      end
+
       redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new, status: :unprocessable_entity
