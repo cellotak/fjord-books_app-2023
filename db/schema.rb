@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_070019) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_074041) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -59,11 +59,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_070019) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "mentions", force: :cascade do |t|
-    t.integer "mentioning_reports_id"
-    t.integer "mentioned_reports_id"
-    t.index ["mentioned_reports_id"], name: "index_mentions_on_mentioned_reports_id"
-    t.index ["mentioning_reports_id"], name: "index_mentions_on_mentioning_reports_id"
+  create_table "mention_relations", force: :cascade do |t|
+    t.integer "mentioning_report_id"
+    t.integer "mentioned_report_id"
+    t.index ["mentioned_report_id"], name: "index_mention_relations_on_mentioned_report_id"
+    t.index ["mentioning_report_id"], name: "index_mention_relations_on_mentioning_report_id"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -94,7 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_070019) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "users"
-  add_foreign_key "mentions", "reports", column: "mentioned_reports_id"
-  add_foreign_key "mentions", "reports", column: "mentioning_reports_id"
+  add_foreign_key "mention_relations", "reports", column: "mentioned_report_id"
+  add_foreign_key "mention_relations", "reports", column: "mentioning_report_id"
   add_foreign_key "reports", "users"
 end

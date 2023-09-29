@@ -1,0 +1,8 @@
+class CreateMentionRelations < ActiveRecord::Migration[7.0]
+  def change
+    create_table :mention_relations do |t|
+      t.references :mentioning_report, foreign_key: {to_table: :reports}
+      t.references :mentioned_report, foreign_key: {to_table: :reports}
+    end
+  end
+end
