@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_074041) do
     t.integer "mentioning_report_id"
     t.integer "mentioned_report_id"
     t.index ["mentioned_report_id"], name: "index_mention_relations_on_mentioned_report_id"
+    t.index ["mentioning_report_id", "mentioned_report_id"], name: "mention_report_id", unique: true
     t.index ["mentioning_report_id"], name: "index_mention_relations_on_mentioning_report_id"
   end
 

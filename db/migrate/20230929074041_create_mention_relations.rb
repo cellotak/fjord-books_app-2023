@@ -3,6 +3,7 @@ class CreateMentionRelations < ActiveRecord::Migration[7.0]
     create_table :mention_relations do |t|
       t.references :mentioning_report, foreign_key: {to_table: :reports}
       t.references :mentioned_report, foreign_key: {to_table: :reports}
+      t.index [:mentioning_report_id, :mentioned_report_id], unique: true, name: :mention_report_id
     end
   end
 end
