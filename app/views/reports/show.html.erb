@@ -16,10 +16,16 @@
     <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
   <% end %>
 
+</nav>
+
+<div class="comments-container">
+  <strong>この<%= Report.model_name.human %>をリンクしている<%= Report.model_name.human %>:</strong>
   <% if @report.mentioned_reports.present? %>
     <% @report.mentioned_reports.each do |mentioned_report| %>
         <br>
-        <%= "#{mentioned_report.title} からリンクされています。" %>
+        <%= "#{mentioned_report.user.name}さんの日報「" %>
+        <%= link_to mentioned_report.title, report_path(mentioned_report) %>
+        <%= "」からリンクされています。" %>
     <% end %>
   <% end %>
-</nav>
+</div>
