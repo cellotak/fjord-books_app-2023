@@ -21,19 +21,16 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def parse_mention
+  def create_mention_relation
     new_mentioned_report_ids = content.scan(/http:\/\/127.0.0.1:3000\/reports\/(\d+)/).map { |captured_str| captured_str[0].to_i }
-
     current_mentioned_report_ids = mentioning_reports.map(&:id)
 
     addition_report_ids = new_mentioned_report_ids - current_mentioned_report_ids
-
     deletion_report_ids = current_mentioned_report_ids - new_mentioned_report_ids
 
     deletion_report_ids.each do |mentioned_report_id|
       MentionRelation.find_by(mentioned_report_id:).destroy
     end
-    
     addition_report_ids.each do |mentioned_report_id|
       MentionRelation.create(mentioning_report_id: id, mentioned_report_id:)
     end
