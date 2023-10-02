@@ -22,7 +22,7 @@ class Report < ApplicationRecord
   end
 
   def create_mention_relation
-    new_mentioned_report_ids = content.scan(/http:\/\/127.0.0.1:3000\/reports\/(\d+)/).map { |captured_str| captured_str[0].to_i }
+    new_mentioned_report_ids = content.scan(%r{http:\/\/127.0.0.1:3000\/reports\/(\d+)}).map { |captured_str| captured_str[0].to_i }
     current_mentioned_report_ids = mentioning_reports.map(&:id)
 
     addition_report_ids = new_mentioned_report_ids - current_mentioned_report_ids
