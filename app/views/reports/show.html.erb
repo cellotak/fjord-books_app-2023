@@ -15,4 +15,11 @@
   <% if @report.editable?(current_user) %>
     <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
   <% end %>
+
+  <% if @report.mentioned_reports.present? %>
+    <% @report.mentioned_reports.each do |mentioned_report| %>
+        <br>
+        <%= "#{mentioned_report.title} からリンクされています。" %>
+    <% end %>
+  <% end %>
 </nav>

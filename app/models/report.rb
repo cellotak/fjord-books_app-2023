@@ -4,12 +4,12 @@ class Report < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
 
-  has_many :mentioning_relationships, class_name: 'MentionRelation', foreign_key: :mentioning_report_id
+  has_many :mentioning_relationships, class_name: 'MentionRelation', foreign_key: :mentioning_report_id, dependent: :destroy
   has_many :mentioning_reports, through: :mentioning_relationships, source: :mentioned_report
 
-  has_many :mentioned_relationships, class_name: 'MentionRelation', foreign_key: :mentioned_report_id
+  has_many :mentioned_relationships, class_name: 'MentionRelation', foreign_key: :mentioned_report_id, dependent: :destroy
   has_many :mentioned_reports, through: :mentioned_relationships, source: :mentioning_report
-  
+
   validates :title, presence: true
   validates :content, presence: true
 
@@ -19,5 +19,13 @@ class Report < ApplicationRecord
 
   def created_on
     created_at.to_date
+  end
+
+  def parse_mention
+    mentioned_report_ids = content.scan(/http:\/\/127.0.0.1:3000\/reports\/(\d+)/).map { |captured_str| captured_str[0].to_i }
+
+    mentioned_report_ids.each do |mentioned_report_id|
+      MentionRelation.create(mentioning_report_id: id, mentioned_report_id:)
+    end
   end
 end
