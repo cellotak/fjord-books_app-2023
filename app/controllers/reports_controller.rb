@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
         redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
       else
         flash.now[:alert] = t('controllers.report.alert_no_mentioning_report', name: Report.model_name.human)
-        render :new
+        render :new, status: :unprocessable_entity
         @report.destroy
       end
     else
