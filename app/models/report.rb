@@ -29,10 +29,12 @@ class Report < ApplicationRecord
     deletion_report_ids = current_mentioned_report_ids - new_mentioned_report_ids
 
     deletion_report_ids.each do |mentioned_report_id|
-      MentionRelation.find_by(mentioned_report_id:).destroy
+      return false unless MentionRelation.find_by(mentioned_report_id:).destroy
     end
+
     addition_report_ids.each do |mentioned_report_id|
-      MentionRelation.create(mentioning_report_id: id, mentioned_report_id:)
+      mention_relation = MentionRelation.new(mentioning_report_id: id, mentioned_report_id:)
+      return false unless mention_relation.save
     end
   end
 end

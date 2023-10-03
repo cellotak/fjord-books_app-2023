@@ -22,8 +22,13 @@ class ReportsController < ApplicationController
     @report = current_user.reports.new(report_params)
 
     if @report.save
-      @report.create_mention_relation
-      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      if @report.create_mention_relation
+        redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      else
+        flash.now[:alert] = t('controllers.report.alert_no_mentioning_report', name: Report.model_name.human)
+        render :new
+        @report.destroy
+      end
     else
       render :new, status: :unprocessable_entity
     end

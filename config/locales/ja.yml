@@ -207,6 +207,8 @@ ja:
       notice_create: "%{name}が作成されました。"
       notice_update: "%{name}が更新されました。"
       notice_destroy: "%{name}が削除されました。"
+    report: 
+      alert_no_mentioning_report: "言及した%{name}は存在しません。"
   layouts:
     menu:
       menu: メニュー
