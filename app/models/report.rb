@@ -11,7 +11,7 @@ class Report < ApplicationRecord
   has_many :mentioned_reports, through: :mentioned_relationships, source: :mentioning_report
 
   validates :title, presence: true
-  validates :content, presence: true
+  validates :content, presence: true, mention: true
   def editable?(target_user)
     user == target_user
   end
@@ -25,7 +25,7 @@ class Report < ApplicationRecord
 
     new_mentioned_report_ids.each do |mentioned_report_id|
       mention_relation = MentionRelation.new(mentioning_report_id: id, mentioned_report_id:)
-      return false unless mention_relation.save!
+      return false unless mention_relation.save
     end
   end
 
