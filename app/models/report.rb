@@ -21,7 +21,7 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def create_mention_relation
+  def build_mention_relation
     new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
     current_mentioned_report_ids = mentioning_reports.map(&:id)
 

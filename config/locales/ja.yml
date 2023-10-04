@@ -110,6 +110,7 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
+      wrong_mention: の言及先が正しくありません。
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
@@ -207,8 +208,6 @@ ja:
       notice_create: "%{name}が作成されました。"
       notice_update: "%{name}が更新されました。"
       notice_destroy: "%{name}が削除されました。"
-    report: 
-      alert_no_mentioning_report: "言及した%{name}は存在しません。"
   layouts:
     menu:
       menu: メニュー

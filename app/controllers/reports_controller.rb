@@ -21,15 +21,14 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.new(report_params)
 
-    if @report.save
-      if @report.create_mention_relation
+    if @report.build_mention_relation
+      if @report.save
         redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
       else
-        flash.now[:alert] = t('controllers.report.alert_no_mentioning_report', name: Report.model_name.human)
         render :new, status: :unprocessable_entity
-        @report.destroy
       end
     else
+      @report.errors.add(:content, :wrong_mention)
       render :new, status: :unprocessable_entity
     end
   end
