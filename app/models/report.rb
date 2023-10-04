@@ -22,12 +22,12 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def create_mention_relation
+  def create_mention_relation!
     new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
 
     new_mentioned_report_ids.each do |mentioned_report_id|
-      mention_relation = MentionRelation.new(mentioning_report_id: id, mentioned_report_id:)
-      return false unless mention_relation.save
+      mention_relation = MentionRelation.new(mentioned_report_id:)
+      mention_relation.save
     end
   end
 
@@ -43,7 +43,7 @@ class Report < ApplicationRecord
     end
 
     addition_report_ids.each do |mentioned_report_id|
-      mention_relation = MentionRelation.new(mentioning_report_id: id, mentioned_report_id:)
+      mention_relation = MentionRelation.new(mentioned_report_id:)
       return false unless mention_relation.save!
     end
   end
