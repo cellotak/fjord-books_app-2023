@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "validator/mention_validator.rb"
+
 class Report < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
