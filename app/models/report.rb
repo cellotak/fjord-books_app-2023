@@ -14,6 +14,7 @@ class Report < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true, mention: true
+
   def editable?(target_user)
     user == target_user
   end
@@ -26,12 +27,12 @@ class Report < ApplicationRecord
     new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
 
     new_mentioned_report_ids.each do |mentioned_report_id|
-      mention_relation = MentionRelation.new(mentioned_report_id:)
-      mention_relation.save
+      mention_relation = mentioning_relationships.new(mentioned_report_id:)
+      mention_relation.save!
     end
   end
 
-  def update_mention_relation
+  def update_mention_relation!
     new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
     old_mentioned_report_ids = mentioning_reports.map(&:id)
 
@@ -39,12 +40,12 @@ class Report < ApplicationRecord
     deletion_report_ids = old_mentioned_report_ids - new_mentioned_report_ids
 
     deletion_report_ids.each do |mentioned_report_id|
-      return false unless MentionRelation.find_by(mentioned_report_id:).destroy
+      mentioning_relationships.find_by(mentioned_report_id:).destroy!
     end
 
     addition_report_ids.each do |mentioned_report_id|
-      mention_relation = MentionRelation.new(mentioned_report_id:)
-      return false unless mention_relation.save!
+      mention_relation = mentioning_relationships.new(mentioned_report_id:)
+      mention_relation.save!
     end
   end
 end
