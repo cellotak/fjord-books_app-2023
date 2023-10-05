@@ -48,6 +48,18 @@ class Report < ApplicationRecord
       mention_relation.save!
     end
   end
+
+  def save_with_mention_ralation
+    ApplicationRecord.transaction do
+      self.save!
+      self.create_mention_relation!
+    end
+  end 
+
+  def update_with_mention_relation(report_params)
+    ApplicationRecord.transaction do 
+      self.update(report_params)
+      self.update_mention_relation!
+    end
+  end
 end
-
-
