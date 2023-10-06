@@ -21,8 +21,11 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.new(report_params)
     if @report.valid?
-      @report.create_with_mention_ralation!
-      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      if @report.create_with_mention_ralation
+        redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,8 +34,11 @@ class ReportsController < ApplicationController
   def update
     @report.attributes = report_params
     if @report.valid?
-      @report.update_with_mention_relation!(report_params)
-      redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
+      if @report.update_with_mention_relation(report_params)
+        redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
       render :new, status: :unprocessable_entity
     end
