@@ -10,7 +10,7 @@
   <% if @report.editable?(current_user) %>
     <%= link_to t('views.common.edit', name: Report.model_name.human.downcase), edit_report_path(@report) %> |
   <% end %>
-  <%= link_to t('views.common.back', name: i18n_pluralize(Report.model_name.human.downcase)), reports_path %>
+  <%= link_to t('views.common.back', name: Report.model_name.human.downcase), reports_path %>
 
   <% if @report.editable?(current_user) %>
     <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
@@ -19,13 +19,14 @@
 </nav>
 
 <div class="comments-container">
-  <strong>この<%= Report.model_name.human %>をリンクしている<%= Report.model_name.human %>:</strong>
+  <strong><%= t('views.common.title_mention', name: Report.model_name.human) %>
+  </strong>
   <% if @report.mentioned_reports.present? %>
     <% @report.mentioned_reports.each do |mentioned_report| %>
         <br>
-        <%= "#{mentioned_report.user.name}さんの日報「" %>
-        <%= link_to mentioned_report.title, report_path(mentioned_report) %>
-        <%= "」からリンクされています。" %>
+        <%= t('views.common.mentioned_by', user_name: mentioned_report.user.name, name: Report.model_name.human.downcase)%>
+        <%= link_to "「#{mentioned_report.title}」", report_path(mentioned_report) %>
+        <%=  %>
     <% end %>
   <% end %>
 </div>
