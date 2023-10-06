@@ -45,7 +45,7 @@ class Report < ApplicationRecord
 end
 
 def create_mention_relation!
-  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
+  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }.uniq
 
   new_mentioned_report_ids.each do |mentioned_report_id|
     mention_relation = mentioning_relationships.new(mentioned_report_id:)
@@ -54,7 +54,7 @@ def create_mention_relation!
 end
 
 def update_mention_relation!
-  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
+  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }.uniq
   old_mentioned_report_ids = mentioning_reports.map(&:id)
 
   addition_report_ids = new_mentioned_report_ids - old_mentioned_report_ids
