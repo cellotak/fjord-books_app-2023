@@ -23,43 +23,43 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def create_mention_relation!
-    new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
-
-    new_mentioned_report_ids.each do |mentioned_report_id|
-      mention_relation = mentioning_relationships.new(mentioned_report_id:)
-      mention_relation.save!
-    end
-  end
-
-  def update_mention_relation!
-    new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
-    old_mentioned_report_ids = mentioning_reports.map(&:id)
-
-    addition_report_ids = new_mentioned_report_ids - old_mentioned_report_ids
-    deletion_report_ids = old_mentioned_report_ids - new_mentioned_report_ids
-
-    deletion_report_ids.each do |mentioned_report_id|
-      mentioning_relationships.find_by(mentioned_report_id:).destroy!
-    end
-
-    addition_report_ids.each do |mentioned_report_id|
-      mention_relation = mentioning_relationships.new(mentioned_report_id:)
-      mention_relation.save!
-    end
-  end
-
-  def save_with_mention_ralation
+  def create_with_mention_ralation!
     ApplicationRecord.transaction do
       self.save!
       self.create_mention_relation!
     end
   end 
 
-  def update_with_mention_relation(report_params)
+  def update_with_mention_relation!(report_params)
     ApplicationRecord.transaction do 
-      self.update(report_params)
+      self.update!(report_params)
       self.update_mention_relation!
     end
+  end
+end
+
+def create_mention_relation!
+  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
+
+  new_mentioned_report_ids.each do |mentioned_report_id|
+    mention_relation = mentioning_relationships.new(mentioned_report_id:)
+    mention_relation.save!
+  end
+end
+
+def update_mention_relation!
+  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }
+  old_mentioned_report_ids = mentioning_reports.map(&:id)
+
+  addition_report_ids = new_mentioned_report_ids - old_mentioned_report_ids
+  deletion_report_ids = old_mentioned_report_ids - new_mentioned_report_ids
+
+  deletion_report_ids.each do |mentioned_report_id|
+    mentioning_relationships.find_by(mentioned_report_id:).destroy!
+  end
+
+  addition_report_ids.each do |mentioned_report_id|
+    mention_relation = mentioning_relationships.new(mentioned_report_id:)
+    mention_relation.save!
   end
 end
