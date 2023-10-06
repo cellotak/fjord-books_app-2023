@@ -1,0 +1,24 @@
+<h2><%= t('views.common.title_index', name: Comment.model_name.human) %></h2>
+<% if comments.empty? %>
+<%= t('views.common.no_item', name: Comment.model_name.human) %>
+<% else %>
+<div id="comments" class="index-items">
+  <% comments.each do |comment| %>
+    <div class="index-item">
+      <%= render comment %>
+      <p>
+        <%= link_to t('views.common.show', name: Comment.model_name.human.downcase), polymorphic_path([comment.commentable, comment]) %>
+      </p>
+      <% if current_user == comment.user %>
+        <br>
+        <div align="right">
+        <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), polymorphic_path([comment.commentable, comment]), method: :delete %>
+        </div>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<%= paginate @comments %>

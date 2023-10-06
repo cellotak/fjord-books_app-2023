@@ -183,19 +183,23 @@ ja:
     pm: 午後
   views:
     common:
-      show: "この%{name}を表示"
+      show: "この%{name}の詳細を表示"
       edit: "この%{name}を編集"
       destroy: "この%{name}を削除"
       new: "%{name}の新規作成"
       back: "%{name}の一覧に戻る"
+      back_to_show: "%{name}の詳細に戻る"
       delete_confirm: よろしいですか？
       title_index: "%{name}の一覧"
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      title_post: "%{name}の投稿"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       title_show: "%{name}の詳細"
       sign_out: ログアウト
+      post: "%{name}を投稿"
+      no_item: "%{name}はありません"
     pagination:
       first: '« 最初'
       last: '最後 »'
@@ -207,6 +211,9 @@ ja:
       notice_create: "%{name}が作成されました。"
       notice_update: "%{name}が更新されました。"
       notice_destroy: "%{name}が削除されました。"
+      alert_unauthorized_operation: "不正な操作です。"
+    comment:
+      no_content: '空のコメントは投稿できません'
   layouts:
     application:
       menu: メニュー
