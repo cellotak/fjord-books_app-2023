@@ -24,9 +24,8 @@
   <% if @report.mentioned_reports.present? %>
     <% @report.mentioned_reports.each do |mentioned_report| %>
         <br>
-        <%= t('views.common.mentioned_by', user_name: mentioned_report.user.name, name: Report.model_name.human.downcase)%>
+        <%= t('views.common.mentioned_by', user_name: mentioned_report.user.name, name: Report.model_name.human.downcase) %>
         <%= link_to "「#{mentioned_report.title}」", report_path(mentioned_report) %>
-        <%=  %>
     <% end %>
   <% end %>
 </div>

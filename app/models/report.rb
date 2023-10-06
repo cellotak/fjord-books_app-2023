@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "validator/mention_validator.rb"
+require 'validator/mention_validator'
 
 class Report < ApplicationRecord
   belongs_to :user
@@ -24,27 +24,23 @@ class Report < ApplicationRecord
   end
 
   def create_with_mention_ralation
-    begin
-      ApplicationRecord.transaction do
-        self.save!
-        self.create_mention_relation!
-      end
-    rescue
-      errors.add(:base, :record_not_saved, name:Report.model_name.human) 
-      false
+    ApplicationRecord.transaction do
+      save!
+      create_mention_relation!
     end
-  end 
+  rescue ActiveRecord::RecordInvalid
+    errors.add(:base, :record_not_saved, name: Report.model_name.human)
+    false
+  end
 
   def update_with_mention_relation(report_params)
-    begin
-      ApplicationRecord.transaction do 
-        self.update!(report_params)
-        self.update_mention_relation!
-      end
-    rescue ActiveRecord::RecordInvalid
-      errors.add(:base, :record_not_saved, name:Report.model_name.human) 
-      false
+    ApplicationRecord.transaction do
+      update!(report_params)
+      update_mention_relation!
     end
+  rescue ActiveRecord::RecordInvalid
+    errors.add(:base, :record_not_saved, name: Report.model_name.human)
+    false
   end
 end
 
