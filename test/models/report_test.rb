@@ -11,4 +11,13 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal true, report.editable?(target_user)
     assert_equal false, report.editable?(non_target_user)
   end
+
+  test "#created_on" do
+    today = Date.today
+    user = User.create!(email:"bob@example.com", password:"password")
+    report = user.reports.create(title:"hoge", content:"hogehoge")  
+    assert_equal today, report.created_on
+  end
+
+
 end
