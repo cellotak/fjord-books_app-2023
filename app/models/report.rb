@@ -42,30 +42,30 @@ class Report < ApplicationRecord
     errors.add(:base, :record_not_saved, name: Report.model_name.human)
     false
   end
-end
 
-def create_mention_relation!
-  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }.uniq
+  def create_mention_relation!
+    new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }.uniq
 
-  new_mentioned_report_ids.each do |mentioned_report_id|
-    mention_relation = mentioning_relationships.new(mentioned_report_id:)
-    mention_relation.save!
-  end
-end
-
-def update_mention_relation!
-  new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }.uniq
-  old_mentioned_report_ids = mentioning_reports.map(&:id)
-
-  addition_report_ids = new_mentioned_report_ids - old_mentioned_report_ids
-  deletion_report_ids = old_mentioned_report_ids - new_mentioned_report_ids
-
-  deletion_report_ids.each do |mentioned_report_id|
-    mentioning_relationships.find_by(mentioned_report_id:).destroy!
+    new_mentioned_report_ids.each do |mentioned_report_id|
+      mention_relation = mentioning_relationships.new(mentioned_report_id:)
+      mention_relation.save!
+    end
   end
 
-  addition_report_ids.each do |mentioned_report_id|
-    mention_relation = mentioning_relationships.new(mentioned_report_id:)
-    mention_relation.save!
+  def update_mention_relation!
+    new_mentioned_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map { |captured_str| captured_str[0].to_i }.uniq
+    old_mentioned_report_ids = mentioning_reports.map(&:id)
+
+    addition_report_ids = new_mentioned_report_ids - old_mentioned_report_ids
+    deletion_report_ids = old_mentioned_report_ids - new_mentioned_report_ids
+
+    deletion_report_ids.each do |mentioned_report_id|
+      mentioning_relationships.find_by(mentioned_report_id:).destroy!
+    end
+
+    addition_report_ids.each do |mentioned_report_id|
+      mention_relation = mentioning_relationships.new(mentioned_report_id:)
+      mention_relation.save!
+    end
   end
 end
