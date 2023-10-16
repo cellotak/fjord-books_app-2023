@@ -33,9 +33,9 @@ class Report < ApplicationRecord
     false
   end
 
-  def update_with_mention_relation(report_params)
+  def update_with_mention_relation
     ApplicationRecord.transaction do
-      update!(report_params)
+      save!
       update_mention_relation!
     end
   rescue ActiveRecord::RecordInvalid

@@ -34,7 +34,7 @@ class ReportsController < ApplicationController
   def update
     @report.assign_attributes(report_params)
     if @report.valid?
-      if @report.update_with_mention_relation(report_params)
+      if @report.update_with_mention_relation
         redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
       else
         render :edit, status: :unprocessable_entity
