@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
-  test "#editable?" do
+  test '#editable?' do
     target_user = User.new
     non_target_user = User.new
     report = target_user.reports.new
@@ -12,7 +12,7 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal false, report.editable?(non_target_user)
   end
 
-  test "#created_on" do
+  test '#created_on' do
     today = Date.today
     @user = users(:alice)
     report = @user.reports.create(title: 'test', content: 'This is test')
