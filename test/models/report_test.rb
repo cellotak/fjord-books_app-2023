@@ -13,7 +13,7 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '#created_on' do
-    today = Date.today
+    today = Time.zone.today
     @user = users(:alice)
     report = @user.reports.create(title: 'test', content: 'This is test')
     assert_equal today, report.created_on
