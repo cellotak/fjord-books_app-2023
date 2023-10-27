@@ -8,9 +8,7 @@ class ReportsTest < ApplicationSystemTestCase
 
     visit root_url
     fill_in 'Eメール', with: 'alice@example.com'
-    # sleep(1)
     fill_in 'パスワード', with: 'password'
-    # sleep(1)
     click_on 'ログイン'
     assert_text 'ログインしました。'
   end
@@ -18,7 +16,6 @@ class ReportsTest < ApplicationSystemTestCase
   test 'visiting the index' do
     visit reports_url
     assert_selector 'h1', text: '日報の一覧'
-    # sleep(1)
   end
 
   test 'should create report' do
@@ -31,7 +28,6 @@ class ReportsTest < ApplicationSystemTestCase
 
     assert_text '日報が作成されました。'
     click_on '日報の一覧に戻る'
-    # sleep(1)
   end
 
   test 'should update Report' do
@@ -44,7 +40,6 @@ class ReportsTest < ApplicationSystemTestCase
 
     assert_text '日報が更新されました。'
     click_on '日報の一覧に戻る'
-    # sleep(1)
   end
 
   test 'should destroy Report' do
@@ -52,6 +47,5 @@ class ReportsTest < ApplicationSystemTestCase
     click_on 'この日報を削除', match: :first
 
     assert_text '日報が削除されました。'
-    # sleep(1)
   end
 end
