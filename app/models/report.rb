@@ -23,24 +23,18 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def create_with_mention_ralation
+  def create_with_mention_ralation!
     ApplicationRecord.transaction do
       save!
       create_mention_relation!
     end
-  rescue ActiveRecord::RecordInvalid
-    errors.add(:base, :record_not_saved, name: Report.model_name.human)
-    false
   end
 
-  def update_with_mention_relation
+  def update_with_mention_relation!
     ApplicationRecord.transaction do
       save!
       update_mention_relation!
     end
-  rescue ActiveRecord::RecordInvalid
-    errors.add(:base, :record_not_saved, name: Report.model_name.human)
-    false
   end
 
   def create_mention_relation!
