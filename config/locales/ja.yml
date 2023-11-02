@@ -110,6 +110,8 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
+      wrong_mention: の言及先が正しくありません。
+      record_not_saved : "%{name}の保存に失敗しました。"
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
@@ -192,6 +194,8 @@ ja:
       title_index: "%{name}の一覧"
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      title_mention: "この%{name}をリンクしている%{name}"
+      mentioned_by: "%{user_name}さんの%{name}からリンクされています: "
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       title_show: "%{name}の詳細"
