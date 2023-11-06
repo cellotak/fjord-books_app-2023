@@ -2,5 +2,5 @@
 
 one:
   user: alice
-  title: MyString
-  content: MyText
+  title: 課題を提出
+  content: 課題を提出しました。

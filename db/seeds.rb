@@ -144,7 +144,7 @@ ApplicationRecord.transaction do # rubocop:disable Metrics/BlockLength
     この作者の本はどれも面白い。
     わかりやすかったです。
   TEXT
-  Book.all.find_each do |book|
+  Book.find_each do |book|
     add_comments_to(book, contents)
   end
 
@@ -160,7 +160,7 @@ ApplicationRecord.transaction do # rubocop:disable Metrics/BlockLength
     勉強になります！
     ですよね〜。同感です。
   TEXT
-  Report.all.find_each do |report|
+  Report.find_each do |report|
     add_comments_to(report, contents)
   end
 end

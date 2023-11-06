@@ -8,14 +8,14 @@ class ReportTest < ActiveSupport::TestCase
     non_target_user = User.new
     report = target_user.reports.new
 
-    assert_equal true, report.editable?(target_user)
-    assert_equal false, report.editable?(non_target_user)
+    assert report.editable?(target_user)
+    refute report.editable?(non_target_user)
   end
 
   test '#created_on' do
-    today = Time.zone.today
+    today = Date.current
     @user = users(:alice)
-    report = @user.reports.create(title: 'test', content: 'This is test')
+    report = @user.reports.create!(title: 'test', content: 'This is test')
     assert_equal today, report.created_on
   end
 end
