@@ -13,7 +13,3 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
-
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
-end

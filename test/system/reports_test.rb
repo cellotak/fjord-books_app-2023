@@ -22,24 +22,26 @@ class ReportsTest < ApplicationSystemTestCase
     visit reports_url
     click_on '日報の新規作成'
 
-    fill_in '内容', with: @report.content
-    fill_in 'タイトル', with: @report.title
+    fill_in 'タイトル', with: 'バグ修正'
+    fill_in '内容', with: 'バグを修正しました。'
     click_on '登録する'
 
     assert_text '日報が作成されました。'
-    click_on '日報の一覧に戻る'
+    assert_selector 'p', text: 'バグ修正'
+    assert_selector 'p', text: 'バグを修正しました。'
   end
 
   test 'should update Report' do
     visit report_url(@report)
     click_on 'この日報を編集', match: :first
 
-    fill_in '内容', with: @report.content
-    fill_in 'タイトル', with: @report.title
+    fill_in 'タイトル', with: '課題再提出'
+    fill_in '内容', with: '課題を再提出しました。'
     click_on '更新する'
 
     assert_text '日報が更新されました。'
-    click_on '日報の一覧に戻る'
+    assert_selector 'p', text: '課題再提出'
+    assert_selector 'p', text: '課題を再提出しました。'
   end
 
   test 'should destroy Report' do
@@ -47,5 +49,7 @@ class ReportsTest < ApplicationSystemTestCase
     click_on 'この日報を削除', match: :first
 
     assert_text '日報が削除されました。'
+    assert_selector 'h1', text: '日報の一覧'
+    refute_selector 'p', text: '課題提出'
   end
 end
