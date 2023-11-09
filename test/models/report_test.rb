@@ -9,7 +9,7 @@ class ReportTest < ActiveSupport::TestCase
     report = target_user.reports.new
 
     assert report.editable?(target_user)
-    refute report.editable?(non_target_user)
+    assert_not report.editable?(non_target_user)
   end
 
   test '#created_on' do
