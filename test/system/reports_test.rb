@@ -20,6 +20,7 @@ class ReportsTest < ApplicationSystemTestCase
 
   test 'should create report' do
     visit reports_url
+    refute_selector 'p', text: 'バグ修正'
     click_on '日報の新規作成'
 
     fill_in 'タイトル', with: 'バグ修正'
