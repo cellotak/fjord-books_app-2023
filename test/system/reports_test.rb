@@ -45,6 +45,9 @@ class ReportsTest < ApplicationSystemTestCase
   end
 
   test 'should destroy Report' do
+    visit reports_url
+    assert_selector 'p', text: '課題提出'
+
     visit report_url(@report)
     click_on 'この日報を削除', match: :first
 
