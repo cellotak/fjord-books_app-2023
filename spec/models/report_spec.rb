@@ -22,7 +22,7 @@ RSpec.describe Report, type: :model do
 
   describe '#created_on' do
    let(:report) {user.reports.create!(title: 'test', content: 'This is test')}
-   let(:user) { User.create!(email: 'foo@example.com', name: 'Alice', password: 'hogehoge') }
+   let(:user) { User.create!(email: 'foo@example.com', name: 'Alice', password: 'hogepass') }
 
     it "indicate the date the report was created" do
       expect(report.created_on).to eq Date.current
