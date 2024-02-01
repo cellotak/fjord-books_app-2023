@@ -2,16 +2,12 @@
 
 FactoryBot.define do
   factory :user do
-    name { 'Alice' }
-    email { 'hoge@example.com' }
-    password { 'hogepass' }
+    name { Faker::Name.name }
+    sequence(:email) { |n| "test#{n}@example.com" }
+    password { 'testpass' }
 
     trait :without_name do
       name { nil }
-    end
-
-    trait :another do
-      email { 'fuga@example.com' }
     end
   end
 end

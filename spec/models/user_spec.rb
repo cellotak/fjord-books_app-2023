@@ -8,14 +8,14 @@ RSpec.describe User, type: :model do
 
     context 'when user name is present' do
       it 'returns user name' do
-        expect(user.name_or_email).to eq 'Alice'
+        expect(user.name_or_email).to eq user.name
       end
     end
 
     context 'when user name is nil' do
       let(:user) { FactoryBot.create(:user, :without_name) }
       it 'returns email adress' do
-        expect(user.name_or_email).to eq 'hoge@example.com'
+        expect(user.name_or_email).to eq user.email
       end
     end
   end

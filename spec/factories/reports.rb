@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :report do
-    title { 'test' }
-    content { 'This is test' }
+    sequence(:title) { |n| "report No.#{n}"}
+    content { Faker::Lorem.sentence }
     association :user
   end
 end
