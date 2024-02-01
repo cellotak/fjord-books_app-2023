@@ -22,8 +22,6 @@ RSpec.describe Report, type: :model do
   end
 
   describe '#created_on' do
-
-
     it 'indicate the date the report was created' do
       expect(report.created_on).to eq Date.current
     end

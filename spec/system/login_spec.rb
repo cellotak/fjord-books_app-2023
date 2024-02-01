@@ -9,7 +9,7 @@ RSpec.describe 'login', type: :system do
     visit root_path
     fill_in 'Eメール', with: user.email
     fill_in 'パスワード', with: user.password
-    click_button "ログイン"
+    click_button 'ログイン'
     expect(page).to have_content '本の一覧'
   end
 end
