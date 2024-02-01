@@ -4,15 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Reports', type: :system do
   before do
-    log_in_user
-    visit root_path
-    fill_in 'Eメール', with: log_in_user.email
-    fill_in 'パスワード', with: log_in_user.password
-    click_button "ログイン"
-    expect(page).to have_content '本の一覧'
+    sign_in user
   end
 
-  let(:log_in_user) { report.user }
+  let(:user) { report.user }
   let(:report) { FactoryBot.create(:report) }
 
   scenario 'user visits the report index' do
