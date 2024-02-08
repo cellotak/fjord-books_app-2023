@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'login', type: :system do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
 
   scenario 'login' do
     visit root_path

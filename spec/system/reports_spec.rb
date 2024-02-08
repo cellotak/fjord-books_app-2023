@@ -8,7 +8,7 @@ RSpec.describe 'Reports', type: :system do
   end
 
   let(:user) { report.user }
-  let(:report) { FactoryBot.create(:report) }
+  let(:report) { create(:report) }
 
   scenario 'user visits the report index' do
     visit reports_path

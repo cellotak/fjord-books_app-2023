@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Report, type: :model do
-  let(:report) { FactoryBot.create(:report) }
+  let(:report) { create(:report) }
 
   describe '#editable?' do
     context 'for report create user' do
@@ -13,7 +13,7 @@ RSpec.describe Report, type: :model do
     end
 
     context 'for non report create user' do
-      let(:non_report_create_user) { FactoryBot.create(:user) }
+      let(:non_report_create_user) { create(:user) }
 
       it 'is not editable' do
         expect(report.editable?(non_report_create_user)).to be false

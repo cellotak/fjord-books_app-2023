@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe '#name_or_email' do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     context 'when user name is present' do
       it 'returns user name' do
@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when user name is nil' do
-      let(:user) { FactoryBot.create(:user, :without_name) }
+      let(:user) { create(:user, :without_name) }
       it 'returns email adress' do
         expect(user.name_or_email).to eq user.email
       end
