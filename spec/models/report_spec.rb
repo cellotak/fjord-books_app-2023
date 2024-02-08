@@ -26,4 +26,13 @@ RSpec.describe Report, type: :model do
       expect(report.created_on).to eq report.created_at.to_date
     end
   end
+
+  describe '#save_mentions' do
+    let(:report) { create(:report, content:"http://localhost:3000/reports/#{mentioned_report.id}") }
+    let(:mentioned_report) { create(:report) }
+
+    it 'saves mentions' do
+      expect(report.mentioning_report_ids).to include mentioned_report.id
+    end
+  end
 end
