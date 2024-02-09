@@ -27,12 +27,41 @@ RSpec.describe Report, type: :model do
     end
   end
 
-  describe '#save_mentions' do
-    let(:report) { create(:report, content:"http://localhost:3000/reports/#{mentioned_report.id}") }
+  describe '#create' do
+    let(:report) { create(:report, content: "http://localhost:3000/reports/#{mentioned_report.id}") }
     let(:mentioned_report) { create(:report) }
 
-    it 'saves mentions' do
+    it 'saves mention' do
       expect(report.mentioning_report_ids).to include mentioned_report.id
+    end
+  end
+
+  describe '#update' do
+    let(:report) { create(:report, content: "http://localhost:3000/reports/#{mentioned_report.id}") }
+    let(:mentioned_report) { create(:report) }
+
+    context 'when the mention is added' do
+      let(:added_mentioned_report) { create(:report) }
+
+      before do
+        report.update(content: "http://localhost:3000/reports/#{mentioned_report.id}, http://localhost:3000/reports/#{added_mentioned_report.id}")
+      end
+
+      it 'saves added mention' do
+        report.mentioning_reports.reload
+        expect(report.mentioning_report_ids).to include(mentioned_report.id, added_mentioned_report.id)
+      end
+    end
+
+    context 'when the mention is deleted' do
+      before do
+        report.update(content: 'No mention.')
+      end
+
+      it 'saves mentions' do
+        report.mentioning_reports.reload
+        expect(report.mentioning_report_ids).not_to include mentioned_report.id
+      end
     end
   end
 end
